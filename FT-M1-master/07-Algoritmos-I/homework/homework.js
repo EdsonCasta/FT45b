@@ -7,21 +7,38 @@ function factorear(num) {
   // Ej: factorear(180) --> [1, 2, 2, 3, 3, 5] Ya que 1x2x2x3x3x5 = 180 y son todos números primos
   // Tu código:
 
-  var array = [1];   //32 % 2 = 0   16 %
-  var divisor = 2;   //32 / 2 = 16 
+//   var array = [1];   //32 % 2 = 0   16 / 
+//   var divisor = 2;   //32 / 2 = 16 
 
-  while (num > 1) {
-    if(num % divisor === 0){
-      array.push(divisor);
-      num /= divisor
-    }else{
-      divisor++;
-    }
+//   while (num > 1) {
+//     if(num % divisor === 0){
+//       array.push(divisor);
+//       num /= divisor
+//     }else{
+//       divisor++;
+//     }
+//   }
+//   return array;
+// }
+
+// console.log(factorear(32)); // [1, 2, ]
+
+let factores = [1];
+
+for(let i = 2; i < num; i++){
+  let residuo = num % i;
+  let cociente = num / i;
+  if(residuo === 0){
+    factores.push(i)
+    num = cociente;
+    i = i - 1;
   }
-  return array;
+}
+return factores;
 }
 
-console.log(factorear(32)); // [1, 2, ]
+console.log(factorear(180));
+
 
 function bubbleSort(array) {
   // Implementar el método conocido como bubbleSort para ordenar de menor a mayor
@@ -74,25 +91,21 @@ function selectionSort(array) {
   // Devolver el array ordenado resultante
   // Tu código:
 
-  let n = array.length; // Obtiene la longitud del array para determinar el límite de las iteraciones.
+  let n = array.length; 
 
-  // Recorre cada elemento del array, excepto el último.
   for (let i = 0; i < n - 1; i++) {
-    let minIndex = i; // Asume que el elemento actual es el mínimo.
-    // Recorre los elementos siguientes al actual.
+    let minIndex = i; 
     for (let j = i + 1; j < n; j++) {
-      // Si encuentra un elemento menor,
       if (array[j] < array[minIndex]) {
-        minIndex = j; // actualiza el índice del mínimo.
+        minIndex = j; 
       }
     }
-    // Si el mínimo no es el elemento actual,
     if (minIndex != i) {
-      [array[i], array[minIndex]] = [array[minIndex], array[i]]; // intercambia los elementos.
+      [array[i], array[minIndex]] = [array[minIndex], array[i]]; 
     }
   }
 
-  return array; // Devuelve el array ordenado.
+  return array; 
 }
 
 console.log(selectionSort([5, 1, 4, 2, 8]));
