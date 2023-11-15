@@ -113,9 +113,7 @@ console.log(queue.enqueue());
 console.log(queue);
 console.log(queue.dequeue());
 console.log(queue);
-console.log(queue.dequeue());
-console.log(queue);
-console.log(queue.dequeue());
+
 
 
 /*⚠️ No modificar nada debajo de esta línea ⚠️*/
