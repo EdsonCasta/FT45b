@@ -7,7 +7,7 @@ import Contact from './components/Contact/Contact';
 export default function App() {
    return (
       <div>
-         <NavBar  />
+         <NavBar />
          <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/contact' element={<Contact />} />
