@@ -11,6 +11,7 @@
 
 "use strict";
 
+const utils = require("./utils");
 let exerciseUtils = require("./utils");
 
 let args = process.argv.slice(2).map(function (st) {
@@ -41,6 +42,14 @@ async function problemA() {
 
   // asyncawait version
   // Tu código acá:
+  try {
+    console.log("-- A. callback version --")
+    const stanza = await exerciseUtils.promisifiedReadFile("poem-one/stanza-01.txt")
+    exerciseUtils.blue(stanza)
+  } catch(err) {
+      throw new Error("problemA | No se llamó a la stanza correcta")
+  }
+  
 }
 
 async function problemB() {
@@ -56,6 +65,16 @@ async function problemB() {
 
   // asyncawait version
   // Tu código acá:
+  async function stanzas(stanza){
+    try {
+      const stanzaContent = await exerciseUtils.promisifiedReadFile(stanza)
+      exerciseUtils.blue(stanzaContent)
+    } catch (err) {
+      throw new Error("problemB | No se llamó a la stanza correcta")
+    }
+  }
+  await stanzas("poem-one/stanza-02.txt")
+  await stanzas("poem-one/stanza-03.txt")
 }
 
 async function problemC() {
@@ -72,6 +91,16 @@ async function problemC() {
 
   // asyncawait version
   // Tu código acá:
+  try {
+    console.log("-- C. callback version (stanza two) --")
+    const stanza2 = await exerciseUtils.promisifiedReadFile("poem-one/stanza-02.txt")
+    exerciseUtils.blue(stanza2)
+    console.log("-- C. callback version (stanza three) --")
+    const stanza3 = await exerciseUtils.promisifiedReadFile("poem-one/stanza-03.txt")
+    exerciseUtils.blue(stanza3)
+  } catch (err) {
+    throw new Error("problemC | No se llamó a la stanza correcta")
+  }
 }
 
 async function problemD() {
@@ -87,6 +116,13 @@ async function problemD() {
 
   // asyncawait version
   // Tu código acá:
+  try {
+    console.log("-- D. callback version (stanza four) --")
+    const stanza4 = await exerciseUtils.promisifiedReadFile("poem-one/wrong-file-name.txt")
+    exerciseUtils.blue(stanza4)
+  } catch(err) {
+    exerciseUtils.magenta("problemD | No se llamo a promisifiedReadFile", err)
+  }
 }
 
 async function problemE() {
@@ -107,6 +143,17 @@ async function problemE() {
 
   // asyncawait version
   // Tu código acá:
+  try {
+    console.log("-- E. callback version (stanza three) --")
+    const stanza3 = await exerciseUtils.promisifiedReadFile("poem-one/stanza-03.txt")
+    exerciseUtils.blue(stanza3)
+
+    console.log("-- E. callback version (stanza four) --")
+    const stanza4 = await exerciseUtils.promisifiedReadFile("poem-one/wrong-file-name.txt")
+    exerciseUtils.blue(stanza4)
+  } catch(err) {
+    exerciseUtils.magenta("problemD | No se llamó a la stanza correcta", err)
+  }
 }
 
 async function problemF() {
@@ -132,4 +179,19 @@ async function problemF() {
 
   // asyncawait version
   // Tu código acá:
+  try {
+    console.log("-- F. callback version (stanza three) --")
+    const stanza3 = await exerciseUtils.promisifiedReadFile("poem-one/stanza-03.txt")
+    exerciseUtils.blue(stanza3)
+
+    console.log("-- F. callback version (stanza four) --")
+    const stanza4 = await exerciseUtils.promisifiedReadFile("poem-one/wrong-file-name.txt")
+    exerciseUtils.blue(stanza4)
+
+    console.log("-- F. callback version done --");
+  } catch (err) {
+    exerciseUtils.magenta("problemF | No se llamó a la stanza correcta", err)
+  } finally {
+    console.log("-- F. callback version done --");
+  }
 }
