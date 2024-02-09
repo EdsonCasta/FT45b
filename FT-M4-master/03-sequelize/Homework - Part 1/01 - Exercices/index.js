@@ -1,8 +1,9 @@
+require('dotenv').config()
 const app = require("./server");
 const { db } = require("./db");
-const PORT = 3000;
+const { PORT } = process.env
 
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
+  await db.sync({ force: true });
   console.log(`Server listening on port ${PORT}`);
-  db.sync({ force: true });
 });
